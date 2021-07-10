@@ -23,7 +23,7 @@ IV.	Further there are two dense layers:
 
 a.	The third last dense layer consists of 64 neuron units with a rectified linear unit (relu) activation.
 
-b. The second last output layer is a dropout layer that randomly drops out some fraction of a layer's input units every step of training, making it much harder for the network to learn those spurious patterns in the training data. Instead, it has to search for broad, general patterns, whose weight patterns tend to be more robust thereby countering overfitting.
+b. The second last output layer is a dropout layer that randomly drops out some fraction(50%) of a layer's input units every step of training, making it much harder for the network to learn those spurious patterns in the training data. Instead, it has to search for broad, general patterns, whose weight patterns tend to be more robust thereby countering overfitting.
 
 c.	The last layer is densely connected with a single output node or neuron as we the model determine a single output, i.e., either positive or negative review.
 
