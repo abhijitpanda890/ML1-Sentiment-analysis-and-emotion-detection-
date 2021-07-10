@@ -27,15 +27,17 @@ b. The second last output layer is a dropout layer that randomly drops out some 
 
 c.	The last layer is densely connected with a single output node or neuron as we the model determine a single output, i.e., either positive or negative review.
 
-After the RNN has converted the sequence to a single vector, the two layers.Dense do some final processing, and convert from this vector representation to a single logit as the classification output.
+After the RNN has converted the sequence to a single vector, the two layers.Dense do some final processing, and convert from this vector representation to a single logit as the classification output. We define custom functions to calculate the metrics-precision, recall anf the F1 Score. We call these functions from within model.compile() in the the next code cell.
 
 -	Since this is a binary classification problem and the model outputs single modified value (positive or negative), we use losses.BinaryCrossentropy loss function and adam as optimizer.
 
 -	We then train the model for 10 epochs with a batch size of 128 at a time and 30 validation steps(batches) after each epoch.
 After training the model, the following results are obtained:
+
 loss: 0.1396, accuracy: 0.9422, f1_m: 0.9407, precision_m: 0.9613, recall_m: 0.9215, val_loss: 0.1554, val_accuracy: 0.9382, val_f1_m: 0.9383, val_precision_m: 0.9518, val_recall_m: 0.9256
 
 -	Testing the model, on the test data we obtain the following results:
+
 Test Loss: 0.14759980142116547
 Test Accuracy: 0.9415000081062317
 Test Precision: 0.9503315091133118
