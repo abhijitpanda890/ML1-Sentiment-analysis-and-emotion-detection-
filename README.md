@@ -1,7 +1,12 @@
 # ML1-Sentiment-analysis-and-emotion-detection-
 This text classification model trains a Recurrent Neural Network (RNN) on the Yelp Polarity Reviews dataset for sentiment analysis.
 Created by Zhang et al. in 2015, the Yelp Polarity Reviews Dataset contains 1,569,264 samples from the Yelp Dataset Challenge 2015. This subset has 280,000 training samples and 19,000 test samples in each polarity (positive and negative reviews). Dataset from FastAI's website., in the English language. Containing 1,569,264 in CSV file format.
-Salient Features:
+
+ The repository contains two files:
+ (i)Sentiment_Analysis(Yelp_Polarity_reviews).ipynb-the initial model
+ (ii)(Robust)Sentiment Analysis(Yelp-Polarity reviews).ipynb-the model with overfitting overcome by using more dropout layers and callback function.
+
+Salient Features of the initial model(Sentiment_Analysis(Yelp_Polarity_reviews).ipynb):
 
 -	The raw text loaded by tfds needs to be processed before it can be used in a model. The simplest way to process text for training is using the experimental.preprocessing.TextVectorization layer. This layer will standardize, tokenize, and vectorize the data. Standardization refers to pre-processing the text, typically to remove punctuation or HTML elements to simplify the dataset. Tokenization refers to splitting strings into tokens (for example, splitting a sentence into individual words by splitting on whitespace). Vectorization refers to converting tokens into numbers so they can be fed into a neural network. 
 
@@ -44,7 +49,43 @@ Test Precision: 0.9503315091133118
 Test Recall: 0.9313362836837769
 Test F1 Score: 0.9405220746994019
 
+We observe that in the later epochs the validation loss and loss are far apart and the validation loss shows sign of levelling off or a slight increase. This indicates the there has been overfitting in the model. We have tried to overcome that in the second file.
+
 -Finally, we have saved the model under Keras to access it in future.
+
+
+
+The second file contains the more robust model. All the features of this model are same as the initial model except for the following changes:
+
+(a)Citing the overfitting in the initial model, we added an earlystopping call back function(paticence=5 epochs and min_delta=0.01), whose objective was to check overfitting.
+As soon as the validation loss starts increasing or decreases by a value less than 0.001 per epoch, this function is called and it stops the training there, restoring the best weights.
+
+(b)Also to prevent the model from deviating by learning noisy interpretations or spurious data, we added another drop out layer after the 2nd RNN layer. 
+
+The following are the results obtained:
+
+After training:
+ loss: 0.1766 - accuracy: 0.9269 - f1_m: 0.9248 - precision_m: 0.9482 - recall_m: 0.9033 - val_loss: 0.1791 - val_accuracy: 0.9264 - val_f1_m: 0.9268 - val_precision_m: 0.9397 - val_recall_m: 0.9147
+ 
+ After Testing:
+Test Loss: 0.17096687853336334
+Test Accuracy: 0.93039470911026
+Test Precision: 0.9406332969665527
+Test Recall: 0.9187859892845154
+Test F1 Score: 0.929294764995575
+
+ The trends in loss and accuracy can be referred to the graphical plots in the colab file.
+
+Inspite of the slight decrease in accuracy, this model is more robust than the initial model. It allows better generalization for the problem and hence, ensures better accuracy in predictions over unseen data.
+
+Thank You
+
+Group:ML-1
+
+Sanjit Vyas        Abhijit Panda         Nilay Kushawaha
+
+
+
  
 
 
